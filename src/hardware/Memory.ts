@@ -7,6 +7,7 @@ export class Memory extends Hardware{
         super();
 
     }
+    //Initialization of array of hexadecimal numbers
     public hexIntialize(){
       for(let i = 0x00; i < this.array.length;i++){
         this.array[i] = 0x00 + i;
@@ -17,6 +18,7 @@ export class Memory extends Hardware{
 
 
     }
+    // Print out numbers in hex array with proper hex syntax if hex is correct size else display Undefinded number
     public hexDisplay(){
       for(let i = 0;i < 21;i++){
         if(this.array[i] <= 0xff)
