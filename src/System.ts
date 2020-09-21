@@ -18,7 +18,7 @@ const CLOCK_INTERVAL= 500;               // This is in ms (milliseconds) so 1000
 
 export class System extends Hardware {
 
-    private _CPU: Cpu = null;
+    private _CPU: Cpu = new Cpu;
     private _MEMORY: Memory = new Memory;
     public timestamp: string = Date();// timestamp for when object is created
     public running: boolean = false;
@@ -29,9 +29,7 @@ export class System extends Hardware {
       super();
 
 
-        // create object of cpu
-        this._CPU = new Cpu();
-        console.log("hello");
+      
 
 
 
@@ -48,17 +46,22 @@ export class System extends Hardware {
         // Give cpu name and id
         this._CPU.id = 1;
         this._CPU.name = "CPU";
+        this._CPU.cpuClockCount = 1;
         this._MEMORY.hexIntialize();
         this._MEMORY.hexDisplay()
         this._CPU.log(this.timestamp);
+        console.log(this._CPU.cpuClockCount);
+        setInterval(this._CPU.pulse,CLOCK_INTERVAL);
 
 
     }
 
     public startSystem(): boolean {
-        //Set cpu debug mode to false
-        this._CPU.debug = false;
-        // loop
+
+
+        this._CPU.debug = true;
+
+
 
 
 
