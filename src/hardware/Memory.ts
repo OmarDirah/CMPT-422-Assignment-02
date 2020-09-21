@@ -1,7 +1,8 @@
 import {System} from "../System";
 import { Hardware } from "./Hardware";
+import { ClockListener } from "./imp/ClockListener";
 
-export class Memory extends Hardware{
+export class Memory extends Hardware implements ClockListener{
     array: number[] = new Array(256);
     constructor() {
         super();
@@ -27,6 +28,10 @@ export class Memory extends Hardware{
           console.log("Undefinded number");
         }
       }
+
+    }
+    public pulse(){
+      console.log("[ HW - " + this.name + ": 0-" + this.id + "]: " + "received clock pulse");
 
     }
 }

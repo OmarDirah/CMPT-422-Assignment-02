@@ -19,7 +19,7 @@ const CLOCK_INTERVAL= 500;               // This is in ms (milliseconds) so 1000
 export class System extends Hardware {
 
     private _CPU: Cpu = null;
-    private _MEMORY: Memory = new Memory;
+    private _MEMORY: Memory = null;
     public timestamp: string = Date();// timestamp for when object is created
     public running: boolean = false;
 
@@ -53,17 +53,26 @@ export class System extends Hardware {
       // Give cpu name and id
         this._CPU = new Cpu;
         this._CPU.name = "CPU";
-
-        this._MEMORY.hexIntialize();
-        this._MEMORY.hexDisplay()
-        this._CPU.log(this.timestamp);
+        this._CPU.id = 1567893457;
+        this._CPU.log("created");
         this._CPU.cpuClockCount = 1;
-        this._CPU.logs;
-      //console.log(this._CPU.cpuClockCount);
-        let temp = this._CPU.pulse();
-        this._CPU.debug = true;
 
-        //setTimeout(function(){this._CPU.pulse()},CLOCK_INTERVAL);
+        this._MEMORY = new Memory;
+        this._MEMORY.name = "RAM";
+        this._MEMORY.id = 1545879633;
+        this._MEMORY.hexIntialize();
+        //this._MEMORY.hexDisplay();
+
+      //console.log(this._CPU.cpuClockCount);
+        let tempCPU = this._CPU;
+        let tempRam = this._MEMORY;
+
+
+
+
+        setTimeout(function(){tempCPU.pulse()},CLOCK_INTERVAL);
+        setTimeout(function(){tempRam.pulse()},CLOCK_INTERVAL);
+        setTimeout(function(){tempCPU.pulse()},CLOCK_INTERVAL);
 
 
 
@@ -88,11 +97,8 @@ export class System extends Hardware {
 }
 //Create system object give it an id and name and print log
 let system: System = new System();
-let cpu: Cpu = new Cpu;
-cpu.cpuClockCount = 0;
+
 
 system.name = "System";
 system.id = 1;
 system.log(system.timestamp);
-setTimeout(function(){cpu.pulse()},CLOCK_INTERVAL);
-setTimeout(function(){cpu.pulse()},CLOCK_INTERVAL);

@@ -9,17 +9,13 @@ export class Cpu extends Hardware implements ClockListener{
     constructor() {
         super();
     }
-    // display cpu clock counter then increase counter by one
 
-    public logs(){
-      console.log(this.cpuClockCount);
-    }
     //Pulse internal clock for cpu
     pulse(){
 
 
 
-          console.log(this.cpuClockCount);
+          console.log("[ HW - " + this.name + ": 0-" + this.id + "]: " + "  - CPU CLOCK COUNT : " + this.cpuClockCount);
           this.cpuClockCount++;
 
     }
