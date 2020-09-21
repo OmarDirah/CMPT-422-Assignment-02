@@ -2,6 +2,7 @@
 import {Cpu} from "./hardware/Cpu";
 import { Hardware } from "./hardware/Hardware";
 import {Memory} from "./hardware/Memory";
+import {Clock} from "./hardware/Clock";
 
 
 /*
@@ -20,6 +21,7 @@ export class System extends Hardware {
 
     private _CPU: Cpu = null;
     private _MEMORY: Memory = null;
+    private _CLK: Clock = null;
     public timestamp: string = Date();// timestamp for when object is created
     public running: boolean = false;
 
@@ -56,24 +58,32 @@ export class System extends Hardware {
         this._CPU.id = 1567893457;
         this._CPU.log("created");
         this._CPU.cpuClockCount = 1;
-
+      // Give Ram Name and ID
         this._MEMORY = new Memory;
         this._MEMORY.name = "RAM";
         this._MEMORY.id = 1545879633;
         this._MEMORY.hexIntialize();
+        this._MEMORY.log("created");
         //this._MEMORY.hexDisplay();
+      // Give Clock Name and ID
+        this._CLK = new Clock;
+        this._CLK.name = "CLK";
+        this._CLK.id = 1545879633;
+        this._MEMORY.log("created");
+
+        //Give Clock name and ID;
 
       //console.log(this._CPU.cpuClockCount);
         let tempCPU = this._CPU;
         let tempRam = this._MEMORY;
+        let tempClk = this._CLK;
 
 
 
-
-        setTimeout(function(){tempCPU.pulse()},CLOCK_INTERVAL);
-        setTimeout(function(){tempRam.pulse()},CLOCK_INTERVAL);
-        setTimeout(function(){tempCPU.pulse()},CLOCK_INTERVAL);
-
+        setInterval(function(){tempClk.cycle()},CLOCK_INTERVAL);
+        // first interval
+        setInterval(function(){tempCPU.pulse()},CLOCK_INTERVAL);
+        setInterval(function(){tempRam.pulse()},CLOCK_INTERVAL);
 
 
 
